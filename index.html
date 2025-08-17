@@ -59,6 +59,20 @@
             height: 100%;
             object-fit: contain;
             background: #222;
+            /* Prevent image dragging */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            /* Prevent image selection */
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            /* Prevent touch callout */
+            -webkit-touch-callout: none;
         }
 
         .active {
@@ -74,7 +88,7 @@
             text-align: center;
             font-size: 1.5rem;
             color: white;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 3;
             font-weight: bold;
         }
@@ -86,7 +100,7 @@
             text-align: center;
             font-size: 1.5rem;
             color: white;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 3;
             font-weight: bold;
             padding: 10px;
@@ -100,6 +114,13 @@
             position: relative;
             width: 100%;
             height: 100%;
+            /* Prevent context menu */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .final-slide {
@@ -135,6 +156,7 @@
         }
 
         @media (max-width: 400px) {
+
             .memory-date,
             .caption {
                 font-size: 1.2rem;
@@ -230,14 +252,22 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <div id="landing-page">
         <div class="landing-content">
             <h1>Saumya & Sayan ❤️</h1>
@@ -469,10 +499,10 @@
             </div>
             <div class="caption">Monsoon memories</div>
         </div>
-        
+
         <div class="slide final-slide">
-            <p>Through every smile and every tear, every fight and every cheer… 
-               you've been my strength, my happiness, and my home. ❤️</p>
+            <p>Through every smile and every tear, every fight and every cheer…
+                you've been my strength, my happiness, and my home. ❤️</p>
             <p>I may not be perfect, but my love for you is endless and true. 💕</p>
             <h2>Do you love me?</h2>
             <div class="buttons">
@@ -485,6 +515,8 @@
         </div>
     </div>
 
+    </div>
+
     <audio autoplay loop>
         <source src="Bolna.mp3" type="audio/mpeg">
     </audio>
@@ -492,6 +524,21 @@
     <canvas id="confetti"></canvas>
 
     <script>
+        // Prevent context menu on images
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent long-press on mobile
+        document.addEventListener('touchstart', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Rest of your existing JavaScript remains the same
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         const slideInterval = 5000;
@@ -660,4 +707,5 @@
         });
     </script>
 </body>
+
 </html>
