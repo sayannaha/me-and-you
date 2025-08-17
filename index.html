@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #000;
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .progress-bar-container {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #222;
+            z-index: 20;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #fff;
+            transition: width linear;
+            border-radius: 3px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #222;
+        }
+
+        .active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .memory-date {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            z-index: 3;
+            font-weight: bold;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            z-index: 3;
+            font-weight: bold;
+            padding: 10px;
+            max-width: 90%;
+            margin: 0 auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .final-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #222;
+            font-size: 1.5rem;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .final-slide p {
+            max-width: 90%;
+            text-align: center;
+            line-height: 1.5;
+            margin: 10px auto;
+            word-wrap: break-word;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 400px) {
+            .memory-date,
+            .caption {
+                font-size: 1.2rem;
+            }
+
+            .final-slide p {
+                font-size: 1rem;
+            }
+
+            .final-slide h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .yes {
+            background: #ff4d6d;
+            color: white;
+            border: #ff4d6d 3px solid;
+        }
+
+        .no {
+            background: #555;
+            color: white;
+            border: #555 3px solid;
+        }
+
+        .restart {
+            background: #fff;
+            color: #222;
+            border: #ff4d6d 3px solid;
+        }
+
+        #landing-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            z-index: 999;
+            text-align: center;
+        }
+
+        .landing-content h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .landing-content p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        #start-btn {
+            background: white;
+            color: #ff4d6d;
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #start-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .success-message {
+            font-size: 1.5rem;
+            color: #ff9;
+            margin-top: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="landing-page">
+        <div class="landing-content">
+            <h1>Saumya & Sayan ❤️</h1>
+            <p>Cheers to us! 🥂</p>
+            <p>Many more years to come baby,<br>and let's get married... ❤️‍🔥</p>
+            <button id="start-btn">See Memories!💖</button>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+
+        <div class="slide active">
+            <div class="memory-date">Feb 12, 2020</div>
+            <div class="image-container">
+                <img src="images/Pic1.jpg" alt="Picture 1">
+            </div>
+            <div class="caption">Our first Pic...Kyuki School wala kho gya 😔</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">August 5, 2016</div>
+            <div class="image-container">
+                <img src="images/Pic2.jpg" alt="">
+            </div>
+            <div class="caption">Our first vacation together ✨</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">December 25, 2016</div>
+            <div class="image-container">
+                <img src="images/Pic3.jpg" alt="">
+            </div>
+            <div class="caption">First Christmas together 💕</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">March 8, 2017</div>
+            <div class="image-container">
+                <img src="images/Pic4.jpg" alt="">
+            </div>
+            <div class="caption">Celebrating Holi</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">July 21, 2017</div>
+            <div class="image-container">
+                <img src="images/Pic5.jpg" alt="">
+            </div>
+            <div class="caption">Beach day</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">October 14, 2017</div>
+            <div class="image-container">
+                <img src="images/Pic6.jpg" alt="">
+            </div>
+            <div class="caption">Diwali celebrations</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">February 14, 2018</div>
+            <div class="image-container">
+                <img src="images/Pic7.jpg" alt="">
+            </div>
+            <div class="caption">Valentine's Day</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">May 3, 2018</div>
+            <div class="image-container">
+                <img src="images/Pic8.jpg" alt="">
+            </div>
+            <div class="caption">Weekend getaway</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">September 22, 2018</div>
+            <div class="image-container">
+                <img src="images/Pic9.jpg" alt="">
+            </div>
+            <div class="caption">Your birthday celebration</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">November 11, 2018</div>
+            <div class="image-container">
+                <img src="images/Pic10.jpg" alt="">
+            </div>
+            <div class="caption">Family dinner</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">January 1, 2019</div>
+            <div class="image-container">
+                <img src="images/Pic11.jpg" alt="">
+            </div>
+            <div class="caption">New Year's kiss</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">April 5, 2019</div>
+            <div class="image-container">
+                <img src="images/Pic12.jpg" alt="">
+            </div>
+            <div class="caption">Spring picnic</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">June 12, 2019</div>
+            <div class="image-container">
+                <img src="images/Pic13.jpg" alt="">
+            </div>
+            <div class="caption">Our anniversary</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">August 15, 2019</div>
+            <div class="image-container">
+                <img src="images/Pic14.jpg" alt="">
+            </div>
+            <div class="caption">Independence Day</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">October 31, 2019</div>
+            <div class="image-container">
+                <img src="images/Pic15.jpg" alt="">
+            </div>
+            <div class="caption">Halloween costumes</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">December 31, 2019</div>
+            <div class="image-container">
+                <img src="images/Pic16.jpg" alt="">
+            </div>
+            <div class="caption">New Year's Eve</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">February 29, 2020</div>
+            <div class="image-container">
+                <img src="images/Pic17.jpg" alt="">
+            </div>
+            <div class="caption">Leap Day adventure</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">May 17, 2020</div>
+            <div class="image-container">
+                <img src="images/Pic18.jpg" alt="">
+            </div>
+            <div class="caption">Lockdown creativity</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">July 4, 2020</div>
+            <div class="image-container">
+                <img src="images/Pic19.jpg" alt="">
+            </div>
+            <div class="caption">Home celebration</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">September 9, 2020</div>
+            <div class="image-container">
+                <img src="images/Pic20.jpg" alt="">
+            </div>
+            <div class="caption">Virtual date night</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">November 26, 2020</div>
+            <div class="image-container">
+                <img src="images/Pic21.jpg" alt="">
+            </div>
+            <div class="caption">Thanksgiving</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">January 30, 2021</div>
+            <div class="image-container">
+                <img src="images/Pic22.jpg" alt="">
+            </div>
+            <div class="caption">Winter getaway</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">March 21, 2021</div>
+            <div class="image-container">
+                <img src="images/Pic23.jpg" alt="">
+            </div>
+            <div class="caption">First road trip</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">June 12, 2021</div>
+            <div class="image-container">
+                <img src="images/Pic24.jpg" alt="">
+            </div>
+            <div class="caption">6 year anniversary</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">August 8, 2021</div>
+            <div class="image-container">
+                <img src="images/Pic25.jpg" alt="">
+            </div>
+            <div class="caption">Beach vacation</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">October 15, 2021</div>
+            <div class="image-container">
+                <img src="images/Pic26.jpg" alt="">
+            </div>
+            <div class="caption">Festival of Lights</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">December 25, 2021</div>
+            <div class="image-container">
+                <img src="images/Pic27.jpg" alt="">
+            </div>
+            <div class="caption">Christmas morning</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">February 14, 2022</div>
+            <div class="image-container">
+                <img src="images/Pic28.jpg" alt="">
+            </div>
+            <div class="caption">Valentine's surprise</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">April 22, 2022</div>
+            <div class="image-container">
+                <img src="images/Pic29.jpg" alt="">
+            </div>
+            <div class="caption">Earth Day picnic</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">June 12, 2022</div>
+            <div class="image-container">
+                <img src="images/Pic30.jpg" alt="">
+            </div>
+            <div class="caption">7 year anniversary</div>
+        </div>
+        <div class="slide">
+            <div class="memory-date">August 19, 2022</div>
+            <div class="image-container">
+                <img src="images/Pic31.jpg" alt="">
+            </div>
+            <div class="caption">Monsoon memories</div>
+        </div>
+        
+        <div class="slide final-slide">
+            <p>Through every smile and every tear, every fight and every cheer… 
+               you've been my strength, my happiness, and my home. ❤️</p>
+            <p>I may not be perfect, but my love for you is endless and true. 💕</p>
+            <h2>Do you love me?</h2>
+            <div class="buttons">
+                <button class="yes">Yes</button>
+                <button class="no">No</button>
+                <button class="restart">Back to Memories</button>
+            </div>
+            <p id="cheeky-msg" style="margin-top:15px; font-size:1rem; color:#ff9;"></p>
+            <div class="success-message" style="display: none;">Dates dekhna chalu karte hai!</div>
+        </div>
+    </div>
+
+    <audio autoplay loop>
+        <source src="Bolna.mp3" type="audio/mpeg">
+    </audio>
+
+    <canvas id="confetti"></canvas>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 5000;
+        const progressBar = document.getElementById('progress');
+        let timer;
+
+        const landingPage = document.getElementById('landing-page');
+        const startBtn = document.getElementById('start-btn');
+        const audio = document.querySelector("audio");
+
+        startBtn.addEventListener('click', () => {
+            landingPage.style.display = "none";
+            audio.play();
+            startSlideshow();
+        });
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) slide.classList.add('active');
+            });
+
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+
+            if (index === slides.length - 1) {
+                progressBar.style.width = '100%';
+                clearInterval(timer);
+                return;
+            }
+
+            setTimeout(() => {
+                progressBar.style.transition = `width ${slideInterval}ms linear`;
+                progressBar.style.width = '100%';
+            }, 50);
+        }
+
+        function nextSlide() {
+            if (currentSlide === slides.length - 1) return;
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            if (currentSlide === 0) return;
+            if (currentSlide === slides.length - 1) return;
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function startSlideshow() {
+            clearInterval(timer);
+            timer = setInterval(nextSlide, slideInterval);
+            showSlide(currentSlide);
+        }
+
+        startSlideshow();
+
+        const yesBtn = document.querySelector('.yes');
+        const noBtn = document.querySelector('.no');
+        const restartBtn = document.querySelector('.restart');
+        const cheekyMsg = document.getElementById('cheeky-msg');
+
+        noBtn.addEventListener('click', () => {
+            cheekyMsg.innerText = "Hey! I know you love me... stop acting weird 😛";
+            noBtn.style.display = "none";
+        });
+
+        yesBtn.addEventListener('click', () => {
+            startConfetti();
+            yesBtn.style.display = "none";
+            noBtn.style.display = "none";
+            cheekyMsg.innerText = "Thank you so much for evrything baby and I love you too! ❤️💍";
+        });
+
+        restartBtn.addEventListener('click', () => {
+            cheekyMsg.innerText = "";
+            noBtn.style.display = "inline-block";
+            currentSlide = 0;
+            startSlideshow();
+        });
+
+        const confettiCanvas = document.getElementById('confetti');
+        const ctx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        let confettis = [];
+
+        function ConfettiParticle() {
+            this.x = Math.random() * confettiCanvas.width;
+            this.y = Math.random() * confettiCanvas.height - confettiCanvas.height;
+            this.r = Math.random() * 6 + 4;
+            this.d = Math.random() * confettiCanvas.height;
+            this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.tilt = Math.floor(Math.random() * 10) - 10;
+            this.tiltAngleIncremental = Math.random() * 0.07 + 0.05;
+            this.tiltAngle = 0;
+
+            this.draw = () => {
+                ctx.beginPath();
+                ctx.lineWidth = this.r / 2;
+                ctx.strokeStyle = this.color;
+                ctx.moveTo(this.x + this.tilt + this.r / 4, this.y);
+                ctx.lineTo(this.x + this.tilt, this.y + this.tilt + this.r / 4);
+                ctx.stroke();
+            };
+        }
+
+        function startConfetti() {
+            confettis = [];
+            for (let i = 0; i < 150; i++) confettis.push(new ConfettiParticle());
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confettis.forEach((confetti, i) => {
+                confetti.tiltAngle += confetti.tiltAngleIncremental;
+                confetti.y += (Math.cos(confetti.d) + 3 + confetti.r / 2) / 2;
+                confetti.x += Math.sin(confetti.d);
+                confetti.draw();
+                if (confetti.y > confettiCanvas.height) {
+                    confettis[i] = new ConfettiParticle();
+                    confettis[i].y = 0;
+                }
+            });
+            requestAnimationFrame(animateConfetti);
+        }
+
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        slideshowContainer.addEventListener('click', (e) => {
+            if (currentSlide === slides.length - 1) return;
+
+            const screenWidth = window.innerWidth;
+            if (e.clientX < screenWidth / 2) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+
+            clearInterval(timer);
+            timer = setInterval(nextSlide, slideInterval);
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slideshowContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slideshowContainer.addEventListener('touchend', (e) => {
+            if (currentSlide === slides.length - 1) return;
+
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+
+            clearInterval(timer);
+            timer = setInterval(nextSlide, slideInterval);
+        });
+    </script>
+</body>
+</html>
