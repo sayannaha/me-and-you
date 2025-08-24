@@ -59,6 +59,20 @@
             height: 100%;
             object-fit: contain;
             background: #222;
+            /* Prevent image dragging */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            /* Prevent image selection */
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            /* Prevent touch callout */
+            -webkit-touch-callout: none;
         }
 
         .active {
@@ -74,7 +88,7 @@
             text-align: center;
             font-size: 1.5rem;
             color: white;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 3;
             font-weight: bold;
         }
@@ -86,7 +100,7 @@
             text-align: center;
             font-size: 1.5rem;
             color: white;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 3;
             font-weight: bold;
             padding: 10px;
@@ -100,6 +114,13 @@
             position: relative;
             width: 100%;
             height: 100%;
+            /* Prevent context menu */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .final-slide {
@@ -135,6 +156,7 @@
         }
 
         @media (max-width: 400px) {
+
             .memory-date,
             .caption {
                 font-size: 1.2rem;
@@ -156,19 +178,16 @@
         .yes {
             background: #ff4d6d;
             color: white;
-            border: #ff4d6d 3px solid;
         }
 
         .no {
             background: #555;
             color: white;
-            border: #555 3px solid;
         }
 
         .restart {
             background: #fff;
             color: #222;
-            border: #ff4d6d 3px solid;
         }
 
         #landing-page {
@@ -230,14 +249,22 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <div id="landing-page">
         <div class="landing-content">
             <h1>Saumya & Sayan ❤️</h1>
@@ -255,226 +282,226 @@
         <div class="slide active">
             <div class="memory-date">Feb 12, 2020</div>
             <div class="image-container">
-                <img src="images/Pic1.jpg" alt="Picture 1">
+                <img src="images/Pic1.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Our first Pic...Kyuki School wala kho gya 😔</div>
         </div>
         <div class="slide">
             <div class="memory-date">August 5, 2016</div>
             <div class="image-container">
-                <img src="images/Pic2.jpg" alt="">
+                <img src="images/Pic2.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Our first vacation together ✨</div>
         </div>
         <div class="slide">
             <div class="memory-date">December 25, 2016</div>
             <div class="image-container">
-                <img src="images/Pic3.jpg" alt="">
+                <img src="images/Pic3.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">First Christmas together 💕</div>
         </div>
         <div class="slide">
             <div class="memory-date">March 8, 2017</div>
             <div class="image-container">
-                <img src="images/Pic4.jpg" alt="">
+                <img src="images/Pic4.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Celebrating Holi</div>
         </div>
         <div class="slide">
             <div class="memory-date">July 21, 2017</div>
             <div class="image-container">
-                <img src="images/Pic5.jpg" alt="">
+                <img src="images/Pic5.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Beach day</div>
         </div>
         <div class="slide">
             <div class="memory-date">October 14, 2017</div>
             <div class="image-container">
-                <img src="images/Pic6.jpg" alt="">
+                <img src="images/Pic6.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Diwali celebrations</div>
         </div>
         <div class="slide">
             <div class="memory-date">February 14, 2018</div>
             <div class="image-container">
-                <img src="images/Pic7.jpg" alt="">
+                <img src="images/Pic7.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Valentine's Day</div>
         </div>
         <div class="slide">
             <div class="memory-date">May 3, 2018</div>
             <div class="image-container">
-                <img src="images/Pic8.jpg" alt="">
+                <img src="images/Pic8.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Weekend getaway</div>
         </div>
         <div class="slide">
             <div class="memory-date">September 22, 2018</div>
             <div class="image-container">
-                <img src="images/Pic9.jpg" alt="">
+                <img src="images/Pic9.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Your birthday celebration</div>
         </div>
         <div class="slide">
             <div class="memory-date">November 11, 2018</div>
             <div class="image-container">
-                <img src="images/Pic10.jpg" alt="">
+                <img src="images/Pic10.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Family dinner</div>
         </div>
         <div class="slide">
             <div class="memory-date">January 1, 2019</div>
             <div class="image-container">
-                <img src="images/Pic11.jpg" alt="">
+                <img src="images/Pic11.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">New Year's kiss</div>
         </div>
         <div class="slide">
             <div class="memory-date">April 5, 2019</div>
             <div class="image-container">
-                <img src="images/Pic12.jpg" alt="">
+                <img src="images/Pic12.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Spring picnic</div>
         </div>
         <div class="slide">
             <div class="memory-date">June 12, 2019</div>
             <div class="image-container">
-                <img src="images/Pic13.jpg" alt="">
+                <img src="images/Pic13.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Our anniversary</div>
         </div>
         <div class="slide">
             <div class="memory-date">August 15, 2019</div>
             <div class="image-container">
-                <img src="images/Pic14.jpg" alt="">
+                <img src="images/Pic14.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Independence Day</div>
         </div>
         <div class="slide">
             <div class="memory-date">October 31, 2019</div>
             <div class="image-container">
-                <img src="images/Pic15.jpg" alt="">
+                <img src="images/Pic15.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Halloween costumes</div>
         </div>
         <div class="slide">
             <div class="memory-date">December 31, 2019</div>
             <div class="image-container">
-                <img src="images/Pic16.jpg" alt="">
+                <img src="images/Pic16.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">New Year's Eve</div>
         </div>
         <div class="slide">
             <div class="memory-date">February 29, 2020</div>
             <div class="image-container">
-                <img src="images/Pic17.jpg" alt="">
+                <img src="images/Pic17.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Leap Day adventure</div>
         </div>
         <div class="slide">
             <div class="memory-date">May 17, 2020</div>
             <div class="image-container">
-                <img src="images/Pic18.jpg" alt="">
+                <img src="images/Pic18.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Lockdown creativity</div>
         </div>
         <div class="slide">
             <div class="memory-date">July 4, 2020</div>
             <div class="image-container">
-                <img src="images/Pic19.jpg" alt="">
+                <img src="images/Pic19.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Home celebration</div>
         </div>
         <div class="slide">
             <div class="memory-date">September 9, 2020</div>
             <div class="image-container">
-                <img src="images/Pic20.jpg" alt="">
+                <img src="images/Pic20.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Virtual date night</div>
         </div>
         <div class="slide">
             <div class="memory-date">November 26, 2020</div>
             <div class="image-container">
-                <img src="images/Pic21.jpg" alt="">
+                <img src="images/Pic21.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Thanksgiving</div>
         </div>
         <div class="slide">
             <div class="memory-date">January 30, 2021</div>
             <div class="image-container">
-                <img src="images/Pic22.jpg" alt="">
+                <img src="images/Pic22.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Winter getaway</div>
         </div>
         <div class="slide">
             <div class="memory-date">March 21, 2021</div>
             <div class="image-container">
-                <img src="images/Pic23.jpg" alt="">
+                <img src="images/Pic23.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">First road trip</div>
         </div>
         <div class="slide">
             <div class="memory-date">June 12, 2021</div>
             <div class="image-container">
-                <img src="images/Pic24.jpg" alt="">
+                <img src="images/Pic24.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">6 year anniversary</div>
         </div>
         <div class="slide">
             <div class="memory-date">August 8, 2021</div>
             <div class="image-container">
-                <img src="images/Pic25.jpg" alt="">
+                <img src="images/Pic25.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Beach vacation</div>
         </div>
         <div class="slide">
             <div class="memory-date">October 15, 2021</div>
             <div class="image-container">
-                <img src="images/Pic26.jpg" alt="">
+                <img src="images/Pic26.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Festival of Lights</div>
         </div>
         <div class="slide">
             <div class="memory-date">December 25, 2021</div>
             <div class="image-container">
-                <img src="images/Pic27.jpg" alt="">
+                <img src="images/Pic27.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Christmas morning</div>
         </div>
         <div class="slide">
             <div class="memory-date">February 14, 2022</div>
             <div class="image-container">
-                <img src="images/Pic28.jpg" alt="">
+                <img src="images/Pic28.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Valentine's surprise</div>
         </div>
         <div class="slide">
             <div class="memory-date">April 22, 2022</div>
             <div class="image-container">
-                <img src="images/Pic29.jpg" alt="">
+                <img src="images/Pic29.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Earth Day picnic</div>
         </div>
         <div class="slide">
             <div class="memory-date">June 12, 2022</div>
             <div class="image-container">
-                <img src="images/Pic30.jpg" alt="">
+                <img src="images/Pic30.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">7 year anniversary</div>
         </div>
         <div class="slide">
             <div class="memory-date">August 19, 2022</div>
             <div class="image-container">
-                <img src="images/Pic31.jpg" alt="">
+                <img src="images/Pic31.jpg" id="photo_image" alt="">
             </div>
             <div class="caption">Monsoon memories</div>
         </div>
-        
+
         <div class="slide final-slide">
-            <p>Through every smile and every tear, every fight and every cheer… 
-               you've been my strength, my happiness, and my home. ❤️</p>
+            <p>Through every smile and every tear, every fight and every cheer…
+                you've been my strength, my happiness, and my home. ❤️</p>
             <p>I may not be perfect, but my love for you is endless and true. 💕</p>
-            <h2>Do you love me?</h2>
+            <h2 class="question">Do you love me?</h2>
             <div class="buttons">
                 <button class="yes">Yes</button>
                 <button class="no">No</button>
@@ -485,13 +512,26 @@
         </div>
     </div>
 
+    </div>
+
     <audio autoplay loop>
-        <source src="Bolna.mp3" type="audio/mpeg">
+        <source src="Dooriyan.mp3" type="audio/mpeg">
     </audio>
 
     <canvas id="confetti"></canvas>
 
     <script>
+        const img = document.getElementById("photo_image");
+        img.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
+        img.addEventListener("touchstart", function(e) {
+            e.preventDefault();
+        });
+        img.addEventListener("dragstart", function(e) {
+            e.preventDefault();
+        });
+
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         const slideInterval = 5000;
@@ -554,6 +594,8 @@
         const noBtn = document.querySelector('.no');
         const restartBtn = document.querySelector('.restart');
         const cheekyMsg = document.getElementById('cheeky-msg');
+        const question = document.querySelector('.question');
+        
 
         noBtn.addEventListener('click', () => {
             cheekyMsg.innerText = "Hey! I know you love me... stop acting weird 😛";
@@ -564,6 +606,7 @@
             startConfetti();
             yesBtn.style.display = "none";
             noBtn.style.display = "none";
+            question.style.display = "none";
             cheekyMsg.innerText = "Thank you so much for evrything baby and I love you too! ❤️💍";
         });
 
@@ -660,4 +703,5 @@
         });
     </script>
 </body>
+
 </html>
