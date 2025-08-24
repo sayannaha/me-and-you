@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: #222;
+            background: #000;
             z-index: 20;
             padding: 0 10px;
             box-sizing: border-box;
@@ -41,7 +41,7 @@
         .progress-bar {
             width: 0%;
             height: 100%;
-            background: #fff;
+            background: red;
             transition: width linear;
             border-radius: 3px;
         }
@@ -58,7 +58,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background: #222;
+            background: #000;
             /* Prevent image dragging */
             -webkit-user-drag: none;
             -khtml-user-drag: none;
@@ -128,7 +128,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #222;
+            background: #000;
             font-size: 1.5rem;
         }
 
@@ -141,7 +141,7 @@
             padding: 10px 20px;
             margin: 5px;
             border: none;
-            border-radius: 25px;
+            border-radius: 10px;
             cursor: pointer;
             transition: transform 0.2s;
         }
@@ -181,13 +181,13 @@
         }
 
         .no {
-            background: #555;
+            background: #444;
             color: white;
         }
 
         .restart {
             background: #fff;
-            color: #222;
+            color: #444;
         }
 
         #landing-page {
@@ -196,7 +196,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #222;
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -218,7 +218,7 @@
 
         #start-btn {
             background: white;
-            color: #ff4d6d;
+            color: red;
             font-size: 1.2rem;
             padding: 12px 25px;
             border: none;
@@ -268,9 +268,9 @@
     <div id="landing-page">
         <div class="landing-content">
             <h1>Saumya & Sayan ❤️</h1>
-            <p>Cheers to us! 🥂</p>
+            <p style="color: red;">Cheers to us! 🥂</p>
             <p>Many more years to come baby,<br>and let's get married... ❤️‍🔥</p>
-            <button id="start-btn">See Memories!💖</button>
+            <button id="start-btn">See Memories</button>
         </div>
     </div>
 
@@ -558,7 +558,7 @@
             progressBar.style.width = '0%';
 
             if (index === slides.length - 1) {
-                progressBar.style.width = '100%';
+                progressBar.style.display = 'none';
                 clearInterval(timer);
                 return;
             }
